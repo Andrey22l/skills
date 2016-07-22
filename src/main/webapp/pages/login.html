@@ -1,0 +1,22 @@
+<md-toolbar style="position: fixed;">
+    <div class="md-toolbar-tools">
+        <img layout-padding ng-src='{{imgUrl}}' alt="" height="60" width="60" ng-if="hasAccess()"/>
+        <span>{{welcomeMsg}}</span>
+        <span flex ></span>
+        <md-button  class="md-raised" ng-click="login()" ng-if="!hasAccess()">
+            <md-icon class="fa fa-facebook fa-2x"></md-icon>Login
+        </md-button>
+        <md-button class="md-raised" ng-click="logout()" ng-if="hasAccess()">
+            <md-icon class="fa fa-sign-out fa-2x"></md-icon><span style="top: 1px; left: 4px; position: relative">Logout</span>
+        </md-button>
+    </div>
+</md-toolbar>
+
+<md-whiteframe class="md-whiteframe-z2" layout="column" ng-if="hasAccess()">
+    <h2 layout-padding>Who are your <a ui-sref="friends">friends</a> and what skills do they have?</h2>
+    
+
+    <div  ng-class="{ active: $state.includes('friends') }">
+        <div ui-view="internalView"></div>
+    </div>
+</md-whiteframe>
